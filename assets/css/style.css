@@ -1,29 +1,31 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #0a0a0a;
     padding: 20px;
 }
 
 .container {
     max-width: 900px;
     margin: auto;
-    background: #fff;
+    background: #1f1f1f;
     padding: 20px;
     border-radius: 10px;
 }
 
 h1 {
     text-align: center;
+    color: white;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    color: #2f94ff;
 }
 
 table th, table td {
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     padding: 10px;
     text-align: center;
 }
