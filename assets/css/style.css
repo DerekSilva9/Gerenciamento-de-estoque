@@ -73,9 +73,19 @@ a.btn {
     cursor: pointer;
 }
 
+.btn-modal{
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .modal-content form {
     display: flex;
     flex-direction: column;
+    gap : 10px;
 }
 
 .modal-content form label {

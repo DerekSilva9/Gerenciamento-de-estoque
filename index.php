@@ -34,7 +34,7 @@ require_once 'includes/db_connect.php';
                     <label for="preco">Preço (R$):</label>
                     <input type="number" step="0.01" name="preco" required>
 
-                    <button type="submit" class="btn">Salvar</button>
+                    <button type="submit" class="btn-modal">Salvar</button>
                 </form>
             </div>
         </div>
