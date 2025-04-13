@@ -9,6 +9,7 @@ require_once 'includes/db_connect.php';
     <title>Dashboard - Estoque</title>
     <link rel="stylesheet" href="Assets/css/style.css">
 </head>
+<? include_once 'includes/heeder.php'; ?>
 <body>
     <?php include 'includes/header.php'; ?>
 
@@ -31,6 +32,12 @@ require_once 'includes/db_connect.php';
                     <label for="quantidade">Quantidade:</label>
                     <input type="number" name="quantidade" required>
 
+                    <label for="categoria">Categoria:</label>
+                    <select name="categoria" id="categoria">
+                        <option value="vestuario">vestuario</option>
+                        <option value="eletronicos">eletronicos</option>
+                    </select>
+
                     <label for="preco">Preço (R$):</label>
                     <input type="number" step="0.01" name="preco" required>
 
@@ -47,6 +54,7 @@ require_once 'includes/db_connect.php';
                     <th>Descrição</th>
                     <th>Quantidade</th>
                     <th>Preço (R$)</th>
+                    <th>Categoria</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -63,6 +71,7 @@ require_once 'includes/db_connect.php';
                             <td>{$produto['descricao']}</td>
                             <td>{$produto['quantidade']}</td>
                             <td>" . number_format($produto['preco'], 2, ',', '.') . "</td>
+                            <td>{$produto['categoria']}</td>
                             <td>
                                 <a href='produtos/editar.php?id={$produto['id']}' class='btn-edit'>Editar</a>
                                 <a href='produtos/excluir.php?id={$produto['id']}' class='btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>

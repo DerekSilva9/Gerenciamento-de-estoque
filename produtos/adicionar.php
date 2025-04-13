@@ -6,18 +6,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $descricao = $_POST['descricao'];
     $quantidade = $_POST['quantidade'];
     $preco = $_POST['preco'];
+    $categoria = $_POST['categoria'];
+    
 
 if(!empty($nome) && !empty($quantidade) && !empty($preco)) {
     $nome = htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
     $descricao = htmlspecialchars($descricao, ENT_QUOTES, 'UTF-8');
     $quantidade = (int)$quantidade;
     $preco = (float)$preco;
+    $categoria = htmlspecialchars($categoria, ENT_QUOTES, 'UTF-8');
 
-    $stmt = $db->prepare("INSERT INTO produtos (nome, descricao, quantidade, preco) VALUES (?, ?, ?, ?)");
+    $stmt = $db->prepare("INSERT INTO produtos (nome, descricao, quantidade, preco, categoria) VALUES (?, ?, ?, ?, ?)");
     $stmt->bindValue(1, $nome, SQLITE3_TEXT);
     $stmt->bindValue(2, $descricao, SQLITE3_TEXT);
     $stmt->bindValue(3, $quantidade, SQLITE3_INTEGER);
     $stmt->bindValue(4, $preco, SQLITE3_FLOAT);
+    $stmt->bindValue(5, $categoria, SQLITE3_TEXT);
 
     if ($stmt->execute()) {
         echo "<script>alert('Produto adicionado com sucesso!'); window.location.href='../index.php';</script>";
