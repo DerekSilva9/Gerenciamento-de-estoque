@@ -1,7 +1,6 @@
 <?php
 require_once 'includes/db_connect.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,7 +8,7 @@ require_once 'includes/db_connect.php';
     <title>Dashboard - Estoque</title>
     <link rel="stylesheet" href="Assets/css/style.css">
 </head>
-<? include_once 'includes/heeder.php'; ?>
+<?php include_once 'includes/heeder.php'; ?>
 <body>
     <?php include 'includes/header.php'; ?>
 
@@ -33,7 +32,7 @@ require_once 'includes/db_connect.php';
                     <input type="number" name="quantidade" required>
 
                     <label for="categoria">Categoria:</label>
-                    <select name="categoria" id="categoria">
+                    <select name="categoria">
                         <option value="vestuario">vestuario</option>
                         <option value="eletronicos">eletronicos</option>
                     </select>
@@ -46,6 +45,38 @@ require_once 'includes/db_connect.php';
             </div>
         </div>
 
+        <!-- Modal de Edição -->
+        <div id="modalEditar" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModalEditar">&times;</span>
+                <h2>Editar Produto</h2>
+                <form action="produtos/editar.php" method="POST">
+                    <input type="hidden" name="id" id="editar-id">
+
+                    <label for="editar-nome">Nome do Produto:</label>
+                    <input type="text" name="nome" id="editar-nome" required>
+
+                    <label for="editar-descricao">Descrição:</label>
+                    <textarea name="descricao" id="editar-descricao"></textarea>
+
+                    <label for="editar-quantidade">Quantidade:</label>
+                    <input type="number" name="quantidade" id="editar-quantidade" required>
+
+                    <label for="editar-categoria">Categoria:</label>
+                    <select name="categoria" id="editar-categoria">
+                        <option value="vestuario">vestuario</option>
+                        <option value="eletronicos">eletronicos</option>
+                    </select>
+
+                    <label for="editar-preco">Preço (R$):</label>
+                    <input type="number" step="0.01" name="preco" id="editar-preco" required>
+
+                    <button type="submit" class="btn-modal">Atualizar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tabela de Produtos -->
         <table>
             <thead>
                 <tr>
@@ -73,22 +104,28 @@ require_once 'includes/db_connect.php';
                             <td>" . number_format($produto['preco'], 2, ',', '.') . "</td>
                             <td>{$produto['categoria']}</td>
                             <td>
-                                <a href='produtos/editar.php?id={$produto['id']}' class='btn-edit'>Editar</a>
+                                <a href='#' class='btn-edit openEditModal'
+                                    data-id='{$produto['id']}'
+                                    data-nome='{$produto['nome']}'
+                                    data-descricao='{$produto['descricao']}'
+                                    data-quantidade='{$produto['quantidade']}'
+                                    data-categoria='{$produto['categoria']}'
+                                    data-preco='{$produto['preco']}'
+                                >Editar</a>
                                 <a href='produtos/excluir.php?id={$produto['id']}' class='btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>
                             </td>
                         </tr>";
                     }
                 } else {
-                    echo "Erro ao obter os dados: " . $db->lastErrorMsg();
+                    echo "<tr><td colspan='7'>Erro ao obter os dados: " . $db->lastErrorMsg() . "</td></tr>";
                 }
-                
                 ?>
             </tbody>
         </table>
     </div>
 
-    <?php include 'includes/footer.php'; ?>
-
     <script src="assets/js/script.js"></script>
+
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

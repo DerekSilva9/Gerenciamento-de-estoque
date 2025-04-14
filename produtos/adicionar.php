@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $categoria = $_POST['categoria'];
     
 
-if(!empty($nome) && !empty($quantidade) && !empty($preco)) {
+if(!empty($nome) && !empty($quantidade) && !empty($preco) && !empty($categoria)) {
     $nome = htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
     $descricao = htmlspecialchars($descricao, ENT_QUOTES, 'UTF-8');
     $quantidade = (int)$quantidade;
