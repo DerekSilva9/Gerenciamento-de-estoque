@@ -8,7 +8,6 @@ require_once 'includes/db_connect.php';
     <title>Dashboard - Estoque</title>
     <link rel="stylesheet" href="Assets/css/style.css">
 </head>
-<?php include_once 'includes/heeder.php'; ?>
 <body>
     <?php include 'includes/header.php'; ?>
 
