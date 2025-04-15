@@ -89,36 +89,36 @@ require_once 'includes/db_connect.php';
                 </tr>
             </thead>
             <tbody>
-                <?php
-                $query = "SELECT * FROM produtos ORDER BY id DESC";
-                $result = $db->query($query);
-                
-                if ($result instanceof SQLite3Result) {
-                    while ($produto = $result->fetchArray(SQLITE3_ASSOC)) {
-                        echo "<tr>
-                            <td>{$produto['id']}</td>
-                            <td>{$produto['nome']}</td>
-                            <td>{$produto['descricao']}</td>
-                            <td>{$produto['quantidade']}</td>
-                            <td>" . number_format($produto['preco'], 2, ',', '.') . "</td>
-                            <td>{$produto['categoria']}</td>
-                            <td>
-                                <a href='#' class='btn-edit openEditModal'
-                                    data-id='{$produto['id']}'
-                                    data-nome='{$produto['nome']}'
-                                    data-descricao='{$produto['descricao']}'
-                                    data-quantidade='{$produto['quantidade']}'
-                                    data-categoria='{$produto['categoria']}'
-                                    data-preco='{$produto['preco']}'
-                                >Editar</a>
-                                <a href='produtos/excluir.php?id={$produto['id']}' class='btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>
-                            </td>
-                        </tr>";
+                    <?php
+                    $query = "SELECT * FROM produtos ORDER BY id DESC";
+                    $result = $db->query($query);
+
+                    if ($result instanceof SQLite3Result) {
+                        while ($produto = $result->fetchArray(SQLITE3_ASSOC)) {
+                            echo "<tr>
+                                <td data-label='ID'>{$produto['id']}</td>
+                                <td data-label='Nome'>{$produto['nome']}</td>
+                                <td data-label='Descrição'>{$produto['descricao']}</td>
+                                <td data-label='Quantidade'>{$produto['quantidade']}</td>
+                                <td data-label='Preço (R$)'>" . number_format($produto['preco'], 2, ',', '.') . "</td>
+                                <td data-label='Categoria'>{$produto['categoria']}</td>
+                                <td data-label='Ações'>
+                                    <a href='#' class='btn-edit openEditModal'
+                                        data-id='{$produto['id']}'
+                                        data-nome='{$produto['nome']}'
+                                        data-descricao='{$produto['descricao']}'
+                                        data-quantidade='{$produto['quantidade']}'
+                                        data-categoria='{$produto['categoria']}'
+                                        data-preco='{$produto['preco']}'
+                                    >Editar</a>
+                                    <a href='produtos/excluir.php?id={$produto['id']}' class='btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>
+                                </td>
+                            </tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='7'>Erro ao obter os dados: " . $db->lastErrorMsg() . "</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='7'>Erro ao obter os dados: " . $db->lastErrorMsg() . "</td></tr>";
-                }
-                ?>
+                    ?>
             </tbody>
         </table>
     </div>
