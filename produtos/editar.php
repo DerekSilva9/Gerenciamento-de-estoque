@@ -1,6 +1,8 @@
 <?php
 require_once '../includes/db_connect.php'; 
 
+// analisando requisição
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $nome = $_POST['nome'];
     $descricao = $_POST['descricao'];
@@ -9,12 +11,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $categoria = $_POST['categoria'];
     $id = $_POST['id'];
 
+// Verificando se os campos obrigatórios estão preenchidos
+// e sanitizando os dados
+
     if(!empty($nome) && !empty($quantidade) && !empty($preco) && !empty($categoria)){
         $nome = htmlspecialchars($nome, ENT_QUOTES, 'UTF-8');
         $descricao = htmlspecialchars($descricao, ENT_QUOTES, 'UTF-8');
         $quantidade = (int)$quantidade;
         $preco = (float)$preco;
         $categoria = htmlspecialchars($categoria, ENT_QUOTES, 'UTF-8');
+
+// Atualizando os dados no banco de dados
 
         $stmt = $db->prepare("UPDATE produtos SET nome = ?, descricao = ?, quantidade = ?, preco = ?, categoria = ? WHERE id = ?");
         $stmt -> bindValue(1, $nome, SQLITE3_TEXT);

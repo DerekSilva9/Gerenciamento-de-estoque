@@ -85,6 +85,7 @@ require_once 'includes/db_connect.php';
                     <th>Quantidade</th>
                     <th>Preço (R$)</th>
                     <th>Categoria</th>
+                    <th>Codigo do produto</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -102,6 +103,7 @@ require_once 'includes/db_connect.php';
                                 <td data-label='Quantidade'>{$produto['quantidade']}</td>
                                 <td data-label='Preço (R$)'>" . number_format($produto['preco'], 2, ',', '.') . "</td>
                                 <td data-label='Categoria'>{$produto['categoria']}</td>
+                                <td data-label='Codigo'>{$produto['codigo']}</td>
                                 <td data-label='Ações'>
                                     <a href='#' class='btn-edit openEditModal'
                                         data-id='{$produto['id']}'
@@ -110,6 +112,7 @@ require_once 'includes/db_connect.php';
                                         data-quantidade='{$produto['quantidade']}'
                                         data-categoria='{$produto['categoria']}'
                                         data-preco='{$produto['preco']}'
+                                        data-codigo='{$produto['codigo']}'
                                     >Editar</a>
                                     <a href='produtos/excluir.php?id={$produto['id']}' class='btn-delete' onclick='return confirm(\"Tem certeza que deseja excluir?\")'>Excluir</a>
                                 </td>

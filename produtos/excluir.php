@@ -1,9 +1,14 @@
 <?php
 require_once '../includes/db_connect.php'; 
 
+
+//analisando requisição
+
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $id = $_GET['id'];
+
+// consulta sql para excluir o produto
 
     if (filter_var($id, FILTER_VALIDATE_INT)) {
         $stmt = $db->prepare("DELETE FROM produtos WHERE id = ?");

@@ -19,7 +19,8 @@ try {
             descricao TEXT,
             quantidade INTEGER NOT NULL,
             preco REAL NOT NULL,
-            categoria TEXT
+            categoria TEXT,
+            codigo TEXT NOT NULL UNIQUE
         );
     ");
 
