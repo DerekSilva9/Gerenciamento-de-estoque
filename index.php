@@ -34,6 +34,8 @@ require_once 'includes/db_connect.php';
                     <select name="categoria">
                         <option value="vestuario">vestuario</option>
                         <option value="eletronicos">eletronicos</option>
+                        <option value="alimento">alimento</option>
+                        <option value="jogos">jogos</option>
                     </select>
 
                     <label for="preco">Preço (R$):</label>
@@ -65,6 +67,8 @@ require_once 'includes/db_connect.php';
                     <select name="categoria" id="editar-categoria">
                         <option value="vestuario">vestuario</option>
                         <option value="eletronicos">eletronicos</option>
+                        <option value="alimento">alimento</option>
+                        <option value="jogos">jogos</option>
                     </select>
 
                     <label for="editar-preco">Preço (R$):</label>
